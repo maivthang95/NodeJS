@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Demo Socket IO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="js/jquery.js"></script>
+    </head>
+    <body >
+    <div class="col-md-6 offset-3">
+        
+        <form>
+            <div class="form-group">
+                <input class="form-control" id="text_message">
+                <div class="input-group">
+                    <input type="button" class="btn btn-success" id="btn_send" value="Send">
+                </div>
+            </div>
+        </form>
+        
+        <ul id="chat">
+
+        </ul>
+    </div>
+        <script>
+            $(document).ready(function(){
+                
+            })
+        </script>
+        <script src="socket.io/socket.io.js"></script>
+        <script>
+            var socket = io("http://localhost:3000");
+            $(document).ready(function(){
+                var username = prompt("Enter your name: " , "Unknown")
+                socket.emit("addUsername" , username)
+                $("#btn_send").click(function(){
+                    var val = $("#text_message").val() ;
+    
+                    socket.emit("client_send_data" , val); 
+                })
+                
+               
+            })
+
+            socket.on("server_send_data" , function(data){
+                    $("#chat").append("<li><b>" + data.sender + "</b> : " + data.username + " is online" +"</li><li>" + "Client is current online: " + JSON.parse(data.users.username) + ", id: " + JSON.parse(data.users.id) + "</li>")
+
+                })
+
+          
+        </script>
+    </body>
+</html>

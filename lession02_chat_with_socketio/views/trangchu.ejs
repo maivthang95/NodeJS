@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/layout.css">
+        <%include layout/header %>
+    </head>
+    <body>
+    <div id="wrapper">
+        <div id="loginForm">
+            <h3>What's your name? </h3>
+            <input type="text" id="txtUserName">
+            <button type="button" id="btn_register">Register</button>
+            <div id="status"></div>
+        </div>
+        <div id="chatForm" style="margin-top:10px">
+            <div id="status1"></div>
+            <div id="left">
+                <div id="boxTitle">User Online</div>
+                <div id="boxContent">
+                    
+                </div>
+            </div>
+            <div id="right">
+                <div id="sayHi">Hello <span id="currentUser"></span> , 
+                    <button type="button" id="btn_logout">Log Out</button>
+                </div>
+                <div id="listMessage">
+                    
+                </div>
+                <div id="status_typing"></div>
+                <input type="text" id="txtMessage">
+                <input type="button" value="Send" id="btn_send_message">
+            </div>
+            
+        </div>
+    </div>
+    </body>
+
+
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect("http://localhost:3000");
+    </script>
+    <script src="js/resolve.js"></script>
+</html>

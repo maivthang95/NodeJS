@@ -1,0 +1,5 @@
+body{background-color : lightgray !important}
+#left{width : 20% ; float : left ; height: 300px}
+#right{width : 80% ; float :left ; height: 300px}  
+#current_room {background-color: darkgray ; width : 200px ; float : right ; color :white}
+#chat_bar{ margin-top: 40% }
